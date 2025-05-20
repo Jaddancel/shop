@@ -2,7 +2,7 @@
     include 'config.php';
     // access table "products" from database and put items in array
     $sql = "SELECT * FROM products";
-    $result = mysql_query($sql);
+    $result = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@
         
         <div class="row row-cols-2 row-cols-md-4 g-4">
             <?php
-            while ($row = mysql_fetch_array($result)){
+            while ($row = mysqli_fetch_array($result)){
                 echo '<div class="col">
                         <div class="card h-100" style="width: 100%;">
                             <img class="card-img-top" src="'. $row['product_image_url'] .'" alt="Card image">
