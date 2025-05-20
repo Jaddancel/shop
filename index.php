@@ -25,7 +25,7 @@
             while ($row = mysqli_fetch_array($result)){
                 echo '<div class="col">
                         <div class="card h-100" style="width: 100%;">
-                            <img class="card-img-top" src="'. $row['product_image_url'] .'" alt="Card image">
+                            <img class="card-img-top" src="'. $row['product_image_url'] .'" alt="Card image" style="padding: 10px;">
                             <div class="card-body">
                                 <h4 class="card-title">"'. $row['product_name'] .'"</h4>
                                 <p class="card-text">"'. $row['product_price'] .'".</p>
