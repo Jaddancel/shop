@@ -1,6 +1,8 @@
 <?php
     session_start(); // Start the session at the very top
     include 'config.php';
+    include 'navbar.php';
+
     $sql = "SELECT * FROM products";
     $result = mysqli_query($conn, $sql);
 ?>
@@ -17,10 +19,15 @@
         <div class="d-flex justify-content-between align-items-center">
             <h1>Computer Shop</h1>
             <?php if (empty($_SESSION['user'])): ?>
-                <button class="btn btn-success">Log In</button>
+                <a href="login.php" class="btn btn-success">Log In</a>
             <?php else: ?>
                 <span>Welcome, <?php echo htmlspecialchars($_SESSION['user']); ?>!</span>
-                <a href="logout.php" class="btn btn-danger">Log Out</a>
+                <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'A'): ?>
+                    <a href="admin.php" class="btn btn-warning">Admin Panel</a>
+                    <a href="logout.php" class="btn btn-danger">Log Out</a>
+                <?php else: ?>
+                    <a href="logout.php" class="btn btn-danger">Log Out</a>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
         <hr>

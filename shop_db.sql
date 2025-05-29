@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2025 at 09:16 AM
+-- Generation Time: May 29, 2025 at 11:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,9 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `customer_data` (
   `user_id` tinyint(4) NOT NULL,
   `user_name` text NOT NULL,
-  `user_password` varchar(25) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
   `user_type` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin COMMENT='This is where customer data is stored.';
+
+--
+-- Dumping data for table `customer_data`
+--
+
+INSERT INTO `customer_data` (`user_id`, `user_name`, `user_password`, `user_type`) VALUES
+(9, 'admin', '$2y$10$BeT4S/zS.qRHmcBQde08ke4PBQN7z.55Z9xhjxUZAp0/k1bRhLDIq', 'A');
 
 -- --------------------------------------------------------
 
@@ -99,7 +106,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `customer_data`
 --
 ALTER TABLE `customer_data`
-  MODIFY `user_id` tinyint(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `orders`
