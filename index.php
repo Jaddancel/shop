@@ -23,8 +23,10 @@
             <?php else: ?>
                 <span>Welcome, <?php echo htmlspecialchars($_SESSION['user']); ?>!</span>
                 <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'A'): ?>
-                    <a href="admin.php" class="btn btn-warning">Admin Panel</a>
-                    <a href="logout.php" class="btn btn-danger">Log Out</a>
+                    <div class="d-inline-flex gap-2">
+                        <a href="admin.php" class="btn btn-warning">Admin Panel</a>
+                        <a href="logout.php" class="btn btn-danger">Log Out</a>
+                    </div>
                 <?php else: ?>
                     <a href="logout.php" class="btn btn-danger">Log Out</a>
                 <?php endif; ?>
@@ -39,8 +41,8 @@
                         <div class="card h-100" style="width: 100%;">
                             <img class="card-img-top" src="'. $row['product_image_url'] .'" alt="Card image" style="padding: 10px;">
                             <div class="card-body">
-                                <h4 class="card-title">"'. $row['product_name'] .'"</h4>
-                                <p class="card-text">"'. $row['product_price'] .'".</p>
+                                <h4 class="card-title">'. $row['product_name'] .'</h4>
+                                <p class="card-text">'. $row['product_price'] .' PHP'.'</p>
                                 <a href="#" class="btn btn-primary">See</a>
                             </div>
                         </div>
