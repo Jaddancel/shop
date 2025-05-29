@@ -1,6 +1,6 @@
 <?php
+    session_start(); // Start the session at the very top
     include 'config.php';
-    // access table "products" from database and put items in array
     $sql = "SELECT * FROM products";
     $result = mysqli_query($conn, $sql);
 ?>
@@ -16,7 +16,12 @@
     <div class="container-md mt-5">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Computer Shop</h1>
-            <button class="btn btn-success">Log In</button>
+            <?php if (empty($_SESSION['user'])): ?>
+                <button class="btn btn-success">Log In</button>
+            <?php else: ?>
+                <span>Welcome, <?php echo htmlspecialchars($_SESSION['user']); ?>!</span>
+                <a href="logout.php" class="btn btn-danger">Log Out</a>
+            <?php endif; ?>
         </div>
         <hr>
         
