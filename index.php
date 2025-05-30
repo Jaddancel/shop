@@ -26,6 +26,7 @@
                 <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'A'): ?>
                     <div class="d-inline-flex gap-2">
                         <a href="admin.php" class="btn btn-warning">Admin Panel</a>
+                        <a href="orders.php" class="btn btn-primary">Orders</a>
                         <a href="logout.php" class="btn btn-danger">Log Out</a>
                     </div>
                 <?php else: ?>

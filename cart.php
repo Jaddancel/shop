@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'config.php';
+include 'navbar.php';
 
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
@@ -46,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     if (!empty($_SESSION['cart'])) {
         $cart = $_SESSION['cart'];
         $total = 0;
-        echo '<form method="post">';
         echo '<table class="table table-bordered w-auto">';
         echo '<thead><tr>
                 <th>Product</th>
@@ -67,16 +67,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                         <td>'.number_format($row['product_price'], 2).' PHP</td>
                         <td>'.number_format($subtotal, 2).' PHP</td>
                         <td>
-                            <form action="add_cart.php" method="post" style="display:inline;">
+                            <form action="cart_process.php" method="post" style="display:inline;">
                                 <input type="hidden" name="product_id" value="'.$pid.'">
+                                <input type="hidden" name="action" value="add">
                                 <button type="submit" class="btn btn-success btn-sm">+</button>
                             </form>
-                            <form action="remove_cart.php" method="post" style="display:inline;">
+                            <form action="cart_process.php" method="post" style="display:inline;">
                                 <input type="hidden" name="product_id" value="'.$pid.'">
+                                <input type="hidden" name="action" value="remove_one">
                                 <button type="submit" class="btn btn-warning btn-sm">-</button>
                             </form>
-                            <form action="remove_item_cart.php" method="post" style="display:inline;">
+                            <form action="cart_process.php" method="post" style="display:inline;">
                                 <input type="hidden" name="product_id" value="'.$pid.'">
+                                <input type="hidden" name="action" value="remove_all">
                                 <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                             </form>
                         </td>
@@ -85,8 +88,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         }
         echo '</tbody></table>';
         echo '<h5 class="text-end">Total: '.number_format($total, 2).' PHP</h5>';
-        echo '<button type="submit" name="place_order" class="btn btn-primary mt-3">Place Order</button>';
-        echo '</form>';
+        // Place Order button in its own form
+        echo '<form method="post" style="display:inline;">
+                <button type="submit" name="place_order" class="btn btn-primary mt-3">Place Order</button>
+              </form>';
     } else {
         echo '<p>Your cart is empty.</p>';
     }
