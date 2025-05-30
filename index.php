@@ -18,6 +18,7 @@
     <div class="container-md mt-5">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Computer Shop</h1>
+            <div>
             <?php if (empty($_SESSION['user'])): ?>
                 <a href="login.php" class="btn btn-success">Log In</a>
             <?php else: ?>
@@ -28,9 +29,11 @@
                         <a href="logout.php" class="btn btn-danger">Log Out</a>
                     </div>
                 <?php else: ?>
+                    <a href="cart.php" class="btn btn-info">Cart</a>
                     <a href="logout.php" class="btn btn-danger">Log Out</a>
                 <?php endif; ?>
             <?php endif; ?>
+            </div>
         </div>
         <hr>
         
@@ -38,12 +41,15 @@
             <?php
             while ($row = mysqli_fetch_array($result)){
                 echo '<div class="col">
-                        <div class="card h-100" style="width: 100%;">
+                        <div class="card h-100" style="height: 200px;">
                             <img class="card-img-top" src="'. $row['product_image_url'] .'" alt="Card image" style="padding: 10px;">
                             <div class="card-body">
                                 <h4 class="card-title">'. $row['product_name'] .'</h4>
                                 <p class="card-text">'. $row['product_price'] .' PHP'.'</p>
-                                <a href="#" class="btn btn-primary">See</a>
+                                <form action="add_cart.php" method="post">
+                                    <input type="hidden" name="product_id" value="'. $row['product_id'] .'">
+                                    <button type="submit" class="btn btn-primary">Add To Cart</button>
+                                </form>
                             </div>
                         </div>
                     </div>';
